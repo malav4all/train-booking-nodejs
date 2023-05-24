@@ -3,13 +3,11 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 const app = express();
-const allowedOrigins = ["http://localhost:3001"];
+const allowedOrigins = ["http://localhost:3000"];
 
-// publish 1
+
 app.use(cors());
-// app.disable('etag');
-// app.use(cors({origin: '*'}));
-// Reflect the origin if it's in the allowed list or not defined (cURL, Postman, etc.)
+
 const corsOptions = {
   origin: (origin: any, callback: any) => {
     if (allowedOrigins.includes(origin) || !origin) {
@@ -19,7 +17,7 @@ const corsOptions = {
     }
   },
 };
-// Enable preflight requests for all routes
+
 app.options("*", cors(corsOptions));
 app.use(express.json());
 
